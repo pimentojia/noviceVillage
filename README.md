@@ -1,4 +1,4 @@
-# uyun-web-template
+# noviceVillage-front
 
 基于 react、react-router-dom、mobx、uyd 搭建的基础脚手架。
 

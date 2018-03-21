@@ -1,0 +1,24 @@
+@import "~@uyun/everest-styles/index";
+
+.themes();
+
+.white() {
+  @breadcrumb-color: @gray-title;
+}
+
+.blue() {
+  @breadcrumb-color: @white;
+}
+
+.dark() {
+  @breadcrumb-color: @white;
+}
+
+.index() {
+  .page-header {
+    .uy-breadcrumb a,
+    .uy-breadcrumb-separator {
+      color: @breadcrumb-color;
+    }
+  }
+}

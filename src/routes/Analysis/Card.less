@@ -1,0 +1,61 @@
+@import "~@uyun/everest-styles/index";
+
+.themes();
+
+.white () {
+  @card-color: rgba(0, 0, 0, 0.65);
+}
+
+.dark () {
+  @card-color: #fff;
+}
+
+.blue () {
+  @card-color: #fff;
+}
+
+.index () {
+  .analysis-card {
+    .analysis-card-value {
+      color: @card-color;
+    }
+  }
+}
+
+.analysis-card {
+  .uy-card-body {
+    padding: 0;
+    height: 100px;
+  }
+
+  .analysis-card-icon {
+    float: left;
+    width: 96px;
+    height: 100%;
+    line-height: 90px;
+    padding: 10px;
+    text-align: center;
+
+    i {
+      font-size: 36px;
+    }
+  }
+
+  .analysis-card-content {
+    padding: 20px;
+    margin-left: 96px;
+    height: 100%;
+
+    .analysis-card-title {
+      font-size: 14px;
+      color: #6ca4cd;
+      line-height: 14px;
+    }
+
+    .analysis-card-value {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 60px;
+    }
+  }
+}

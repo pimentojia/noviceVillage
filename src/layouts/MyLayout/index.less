@@ -1,0 +1,31 @@
+@import "~@uyun/everest-styles/index";
+
+.themes();
+
+.white () {
+  @layout-bg: transparent;
+}
+
+.dark () {
+  @layout-bg: #1f3053;
+}
+
+.blue () {
+  @layout-bg: transparent;
+}
+
+.index () {
+  .basic-layout {
+    background: @layout-bg;
+  }
+}
+
+.basic-layout {
+  height: 100%;
+
+  &-container {
+    transition: all 0.3s;
+    overflow: auto;
+    height: 100%;
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "entryChunk": {
+    "index": "./src/index.js"
+  },
+  "template": [
+    {
+      "path": "./public/index.html",
+      "entry": "index"
+    }
+  ],
+  "vars": {
+    "importLayout": true
+  },
+  "alias": {
+    "~": "./src"
+  },
+  "commonChunk": {
+    "vendor": [
+      "react",
+      "react-dom",
+      "react-router",
+      "mobx"
+    ]
+  },
+  "extraBabelPlugins": [
+    ["import", [
+      {
+        "libraryName": "@uyun/uyd",
+        "style": true
+      }
+    ]],
+    ["@uyun/everest-i18n/babel", {
+      "locales": "./src/common/locales.json",
+      "translators": ["__"]
+    }]
+  ]
+}

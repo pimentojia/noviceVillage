@@ -35,3 +35,7 @@ export function getTaskCount (params) {
 export function getTaskList (params) {
   return request.get('/task/list', { params })
 }
+
+export function setTaskStatus (params) {
+  return request.post('/task/setTaskStatus', { params })
+}

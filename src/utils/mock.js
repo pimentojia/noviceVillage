@@ -80,4 +80,5 @@ mock
   }).list)
   // .restore()
 
+  .onPost('/task/setTaskStatus').reply(200)
 export default mock

@@ -20,24 +20,28 @@ function routeWrapper (Component) {
 
 const routerConfig = {
   '/': {
-    redirect: '/task',
+    redirect: '/novice',
     component: routeWrapper(require('../layouts/BasicLayout'))
   },
 
-  '/task': {
-    redirect: '/task/analysis'
+  '/novice': {
+    redirect: '/novice/task/taskboard'
   },
 
-  '/task/analysis': {
-    component: routeWrapper(require('../routes/Analysis'))
+  '/novice/task/taskboard': {
+    component: routeWrapper(require('../routes/TaskHell'))
   },
 
-  '/task/table': {
+  '/novice/task/table': {
     component: routeWrapper(require('../routes/Table'))
   },
 
-  '/task/form': {
+  '/novice/task/form': {
     component: routeWrapper(require('../routes/Form'))
+  },
+
+  '/novice/knowledge': {
+    component: routeWrapper(require('../routes/Analysis'))
   }
 }
 

@@ -27,3 +27,11 @@ export function getTable (params) {
 export function postForm (data) {
   return request.post('/form', { data })
 }
+
+export function getTaskCount (params) {
+  return request.get('/task/count', { params })
+}
+
+export function getTaskList (params) {
+  return request.get('/task/list', { params })
+}

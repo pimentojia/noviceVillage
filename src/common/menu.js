@@ -8,14 +8,14 @@ const menuData = [
     key: 'task',
     name: __('menu-task-hell'),
     type: 'sub',
-    path: 'task',
+    path: 'novice/task',
     children: [
       {
         key: 'taskboard',
         name: __('menu-task-board'),
         type: 'link',
         icon: <i className='uyicon uyicon-home' />,
-        path: 'analysis'
+        path: 'taskboard'
       },
       {
         key: 'scoreboard',
@@ -37,7 +37,7 @@ const menuData = [
     key: 'knowledge',
     name: __('menu-knowledge-hell'),
     type: 'link',
-    path: 'form'
+    path: 'novice/knowledge'
   },
   {
     key: 'check',

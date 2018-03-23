@@ -1,6 +1,9 @@
 # noviceVillage-front
 
-基于 react、react-router-dom、mobx、uyd 搭建的基础脚手架。
+基于 react、react-router-dom、mobx、uyd 搭建的新手村项目。
+
+## 需求
+
 
 ## 使用
 
@@ -10,8 +13,8 @@
 # 默认打开 8000 端口
 $ everest start
 
-# 指定端口
-$ cross-env PORT=5000 everest start
+# 指定端口启动
+$ cross-env PORT=5050 everest start
 ```
 
 ### 本地构建

@@ -7,7 +7,7 @@ class Global {
   language = getCookie('language') || 'zh_CN'
 
   @observable
-  theme = 'blue'
+  theme = 'white'
 
   themes = ['white', 'dark', 'blue']
 

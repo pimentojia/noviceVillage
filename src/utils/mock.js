@@ -54,6 +54,30 @@ mock
     }]
   }).list)
   .onPost('/form').reply(200)
+
+  .onGet('/task/count').reply(200, Mock.mock({
+    'project|0-10': 1,
+    'daily|0-10': 1,
+    'question|0-10': 1,
+    'history|0-100': 1
+  }))
+
+  .onGet('/task/list').reply(200, Mock.mock({
+    'list|11': [{
+      'id': '@id',
+      'name': /Task_\d{4}/,
+      'user': {
+        'realname': '@name',
+        'userBelongType|1': 1
+      },
+      'issueTime': '@datetime',
+      'startTime': '@datetime',
+      'endTime': '@datetime',
+      'period|0-24': 1,
+      'execDuration|1000-35000': 1,
+      'status|0-1': 1
+    }]
+  }).list)
   // .restore()
 
 export default mock

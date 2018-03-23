@@ -1,0 +1,90 @@
+@import "~@uyun/everest-styles/index";
+
+.themes();
+
+.white () {
+  @color: rgba(0, 0, 0, 0.85);
+}
+
+.dark () {
+  @color: #fff;
+}
+
+.blue () {
+  @color: #fff;
+}
+
+.index () {
+  .form {
+    .form-title {
+      color: @color;
+    }
+
+    .uy-form-item {
+      color: @color;
+    }
+
+    .uy-form-item-label label {
+      color: @color;
+    }
+  }
+  .task-card {
+    .task-card-value {
+      color: @color;
+    }
+  }
+}
+
+.form {
+  margin: 16px;
+
+  .form-title {
+    font-size: 16px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    text-indent: 16px;
+  }
+}
+
+
+.task-card {
+  .uy-card-body {
+    padding: 0;
+    height: 100px;
+  }
+
+  .task-card-icon {
+    float: left;
+    width: 96px;
+    height: 100%;
+    line-height: 90px;
+    padding: 10px;
+    text-align: center;
+
+    i {
+      font-size: 40px;
+    }
+  }
+
+  .task-card-content {
+    padding: 20px;
+    margin-left: 96px;
+    height: 100%;
+
+    .task-card-title {
+      font-weight: 700;
+      font-size: 18px;
+      color: #6ca4cd;
+      margin-left: 5%;
+      line-height: 14px;
+    }
+
+    .task-card-value {
+      font-weight: 700;
+      font-size: 20px;
+      margin-left: 25%;
+      line-height: 60px;
+    }
+  }
+}
+

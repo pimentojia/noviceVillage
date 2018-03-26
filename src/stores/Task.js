@@ -2,7 +2,8 @@ import { observable, action, runInAction } from 'mobx'
 
 import {
   getTaskList,
-  getTaskCount
+  getTaskCount,
+  setTaskStatus
 } from '~/services/api'
 
 class Task {
@@ -16,6 +17,18 @@ class Task {
 
   @observable
   data = []
+
+  @observable
+  status = 0
+
+  @action
+  async setStatus (params) {
+    const data = await setTaskStatus(params)
+
+    runInAction(() => {
+      this.status = data
+    })
+  }
 
   @action
   async getCount (params) {

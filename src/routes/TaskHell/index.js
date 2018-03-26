@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Card, Table, Badge, Button, Modal } from '@uyun/uyd'
 import moment from 'moment'
 
-import TaskCard from './Card'
+import TaskCard from './Card.js'
 import PageHeader from '~/components/PageHeader'
 import { __ } from '~/utils/i18n'
 
 import './index.less'
+
+const confirm = Modal.confirm
 
 const topColResponsive = {
   xs: 24,
@@ -26,97 +28,71 @@ const statusTextMap = [
   __('table-status-success')
 ]
 
-const columns = [
-  {
-    title: __('task-column-name'),
-    dataIndex: 'name',
-    render: name => <Link to='/'>{name}</Link>
-  },
-  {
-    title: __('task-column-user'),
-    dataIndex: 'user',
-    render: user => {
-      const userMap = {
-        1: user.realname,
-        2: __('task-user-admin'),
-        3: '--'
-      }
-      return userMap[user.userBelongType]
-    }
-  },
-  {
-    title: __('task-column-issue-time'),
-    dataIndex: 'issueTime',
-    render: issueTime => issueTime && moment(issueTime).format('YYYY-MM-DD')
-  },
-  {
-    title: __('task-column-start-time'),
-    dataIndex: 'startTime',
-    render: startTime => startTime && moment(startTime).format('YYYY-MM-DD')
-  },
-  {
-    title: __('task-column-period-time'),
-    dataIndex: 'period',
-    render: period => period + __('units-hour')
-  },
-  {
-    title: __('task-column-exec-duration'),
-    dataIndex: 'execDuration',
-    render: execDuration => `${Math.round(execDuration / 1000)}s`
-  },
-  {
-    title: __('task-column-status'),
-    dataIndex: 'status',
-    render: status => <Badge status={statusMap[status]} text={statusTextMap[status]} />
-  },
-  {
-    title: __('task-column-handle'),
-    render: (text, record) => (
-      <Row>
-        <Col span={12}>
-          <Button type='primary' onClick={acceptConfirm}>{__('task-column-handle-accept')}</Button>
-        </Col>
-        {record.status !== 2 && (
-          <Col span={12}>
-            <Button type='primary' onClick={doneConfirm}>{__('task-column-handle-done')}</Button>
-          </Col>
-        )}
-      </Row>
-    )
-  }
-]
-
-const confirm = Modal.confirm
-
-function acceptConfirm () {
-  confirm({
-    title: __('task-accept-title'),
-    content: __('task-accept-content'),
-    onOk () {
-      console.log(__('button-ok'))
-    },
-    onCancel () {
-      console.log(__('button-cancel'))
-    }
-  })
-}
-
-function doneConfirm () {
-  confirm({
-    title: __('task-done-title'),
-    content: __('task-done-content'),
-    onOk () {
-      console.log(__('button-ok'))
-    },
-    onCancel () {
-      console.log(__('button-cancel'))
-    }
-  })
-}
-
 @inject('taskStore')
 @observer
 class TaskHell extends Component {
+  state = { isDisabled: [] }
+
+  columns = [
+    {
+      title: __('task-column-name'),
+      dataIndex: 'name',
+      render: name => <Link to='/'>{name}</Link>
+    },
+    {
+      title: __('task-column-user'),
+      dataIndex: 'user',
+      render: user => {
+        const userMap = {
+          1: user.realname,
+          2: __('task-user-admin'),
+          3: '--'
+        }
+        return userMap[user.userBelongType]
+      }
+    },
+    {
+      title: __('task-column-issue-time'),
+      dataIndex: 'issueTime',
+      render: issueTime => issueTime && moment(issueTime).format('YYYY-MM-DD')
+    },
+    {
+      title: __('task-column-start-time'),
+      dataIndex: 'startTime',
+      render: startTime => startTime && moment(startTime).format('YYYY-MM-DD')
+    },
+    {
+      title: __('task-column-period-time'),
+      dataIndex: 'period',
+      render: period => period + __('units-hour')
+    },
+    {
+      title: __('task-column-exec-duration'),
+      dataIndex: 'execDuration',
+      render: execDuration => `${Math.round(execDuration / 1000)}s`
+    },
+    {
+      title: __('task-column-status'),
+      dataIndex: 'status',
+      render: status => <Badge status={statusMap[status]} text={statusTextMap[status]} />
+    },
+    {
+      title: __('task-column-handle'),
+      render: (text, record, index) => (
+        <Row>
+          <Col span={12}>
+            <Button type='primary' disabled={this.state.isDisabled[index]} onClick={this.acceptConfirm.bind(this, record, index)}>{__('task-column-handle-accept')}</Button>
+          </Col>
+          {record.status !== 2 && (
+            <Col span={12}>
+              <Button type='primary' onClick={this.doneConfirm.bind(this)}>{__('task-column-handle-done')}</Button>
+            </Col>
+          )}
+        </Row>
+      )
+    }
+  ]
+
   componentDidMount () {
     this.props.taskStore.getCount()
       .then(() => {
@@ -124,7 +100,33 @@ class TaskHell extends Component {
       })
   }
 
+  acceptConfirm = (record, index) => {
+    confirm({
+      title: __('task-accept-title'),
+      content: __('task-accept-content'),
+      onOk: () => {
+        let isDisabled = this.state.isDisabled
+        isDisabled[index] = true
+        this.setState({isDisabled})
+      },
+      onCancel () {
+      }
+    })
+  }
+
+  doneConfirm () {
+    confirm({
+      title: __('task-done-title'),
+      content: __('task-done-content'),
+      onOk () {
+      },
+      onCancel () {
+      }
+    })
+  }
+
   render () {
+    console.log(this.state)
     const { taskStore } = this.props
 
     return (
@@ -180,7 +182,7 @@ class TaskHell extends Component {
           <Table
             rowKey='id'
             dataSource={taskStore.data}
-            columns={columns}
+            columns={this.columns}
           />
         </Card>
       </div>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Card, Table, Badge, Button, Modal } from '@uyun/uyd'
 import moment from 'moment'
 
-import TaskCard from './Card.js'
+import TaskCard from './Card'
 import PageHeader from '~/components/PageHeader'
 import { __ } from '~/utils/i18n'
 

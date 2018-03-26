@@ -22,9 +22,6 @@ class Task {
   status = 0
 
   @action
-  async
-
-  @action
   async getCount (params) {
     const data = await getTaskCount(params)
 

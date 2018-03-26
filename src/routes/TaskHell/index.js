@@ -126,7 +126,6 @@ class TaskHell extends Component {
   }
 
   render () {
-    console.log(this.state)
     const { taskStore } = this.props
 
     return (

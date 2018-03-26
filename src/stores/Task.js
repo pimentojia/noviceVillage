@@ -22,13 +22,7 @@ class Task {
   status = 0
 
   @action
-  async setStatus (params) {
-    const data = await setTaskStatus(params)
-
-    runInAction(() => {
-      this.status = data
-    })
-  }
+  async
 
   @action
   async getCount (params) {
